@@ -3,7 +3,7 @@ import { kiddetail } from '@/pages/components/detail'
 import Itemcard from '@/pages/components/Itemcard'
 const Kids = () => {
   return (
-    <div>
+    <div className='p-2'>
         <h1 className='text-3xl text-center'>Kids Wear</h1>
         <div className="grid xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
             {

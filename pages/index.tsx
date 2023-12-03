@@ -10,7 +10,13 @@ import Footer from "@/pages/components/Footer"
 export default function Home() {
   return (
     <main>
-      
+      <div className='h-screen w-full'>
+        <img
+          src='https://wallpapersmug.com/download/1280x960/cee465/white-dress-beautiful-barbara-palvin.jpg'
+          className='object-cover h-full w-full'
+          alt='Cover Image'
+        />
+      </div>
     </main>
   )
 }
