@@ -7,8 +7,8 @@ const Men = () => {
         <h1 className='text-3xl text-center'>Mens Wear</h1>
         <div className="grid xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
             {
-                mens.map((item)=>(
-                  <Itemcard items={item} />
+                mens.map((item,index)=>(
+                  <Itemcard items={item} key={index} />
                 ))
                         
           
