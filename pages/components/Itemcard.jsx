@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Itemcard = (props) => {
- // Make sure you are receiving the correct props
+
 
     return (
         <div>

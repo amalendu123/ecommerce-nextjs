@@ -1,13 +1,13 @@
 import React from 'react'
-import { kiddetail } from '@/pages/components/detail'
+import { mens } from '@/pages/components/detail'
 import Itemcard from '@/pages/components/Itemcard'
-const Kids = () => {
+const Men = () => {
   return (
     <div>
-        <h1 className='text-3xl text-center'>Kids Wear</h1>
+        <h1 className='text-3xl text-center'>Mens Wear</h1>
         <div className="grid xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
             {
-                kiddetail.map((item)=>(
+                mens.map((item)=>(
                   <Itemcard items={item} />
                 ))
                         
@@ -18,4 +18,4 @@ const Kids = () => {
   )
 }
 
-export default Kids
+export default Men
