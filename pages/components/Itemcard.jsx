@@ -1,12 +1,13 @@
+import Router from "next/router";
 import React from 'react';
 
 const Itemcard = (props) => {
-
+    
 
     return (
         <div>
             <div className='mt-10 '>
-                <div className='w-60 h-72 lg:w-60 lg:h-72 m-auto bg-white flex flex-col border-4 p-2 '>
+                <div className='w-60 h-72 lg:w-60 lg:h-72 m-auto bg-white flex flex-col border-4 p-2 ' onClick={() => Router.push(`/items/${props.items.name}?param2=${props.items.category}`)}>
                     <div className="card-image w-full h-60 lg:h-60 relative">
                         <img
                             src="https://res.cloudinary.com/purnesh/image/upload/w_540,f_auto,q_auto:eco,c_limit/21604555004027.jpg"
