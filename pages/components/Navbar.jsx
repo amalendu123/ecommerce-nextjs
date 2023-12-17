@@ -5,14 +5,14 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import CloseIcon from '@mui/icons-material/Close';
 import { Close } from '@mui/icons-material';
-const Navbar = () => {
+const Navbar = ({cart,addToCart,removeFromCart,ClearCart,subTotal}) => {
   const router = useRouter();
   const isHomePage = router.pathname === '/';
   const [mobile, setMobile] = useState(false);
-  const [cart, setcart] = useState(true);
+  const [cart1, setcart1] = useState(true);
 
   const handleClick = () => {
-    setcart(!cart);
+    setcart1(!cart1);
   };
 
   const toggleMenu = () => {
@@ -43,7 +43,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {cart ? <div></div> :
+      {cart1 ? <div></div> :
         <div className='fixed right-0 h-screen flex flex-col md:w-1/4 bg-white p-4 gap-10 z-50 w-full'>
           <p className='text-center font-mono font-bold '>Yours Cart </p>
           <div className='flex justify-between'>
@@ -56,7 +56,7 @@ const Navbar = () => {
             <button class="bg-black hover:bg-white text-white hover:text-black font-bold p-4 xl:w-40 lg:w-28 md:w-20 ">
               Check-out
             </button>
-            <button class="bg-black hover:bg-white text-white hover:text-black font-bold p-4 xl:w-40 ">
+            <button class="bg-black hover:bg-white text-white hover:text-black font-bold p-4 xl:w-40 " onClick={ClearCart}>
               Clear
             </button>
           </div>
