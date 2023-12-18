@@ -24,14 +24,14 @@ export default function App({ Component, pageProps }: AppProps) {
    
   }, [])
   
-  const Savecart = (mycart) =>{
-    localStorage.setItem('cart',mycart);
+  const Savecart = (mycart) => {
+    localStorage.setItem('cart', JSON.stringify(mycart)); // Convert to JSON string before storing
     let subt = 0;
-    for(let i = 0;Object.keys(cart),length;i++){
-      subt += mycart[Object.keys(cart)[i]].price * mycart[Object.keys(cart)[i]].qty
+    for (let i = 0; i < Object.keys(cart).length; i++) {
+      subt += mycart[Object.keys(cart)[i]].price * mycart[Object.keys(cart)[i]].qty;
     }
-    settotal(subt)
-  }
+    settotal(subt);
+  };
   const addtocart = (itemcode ,qty,price,name) =>{
     let mycart = cart;
     if (itemcode in mycart) {
