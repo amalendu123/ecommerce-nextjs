@@ -1,6 +1,6 @@
 import React from 'react'
-import { mens } from '@/pages/components/detail'
-import Itemcard from '@/pages/components/Itemcard'
+import { mens } from '@/components/detail'
+import Itemcard from '@/components/Itemcard'
 const Men = () => {
   return (
     <div>

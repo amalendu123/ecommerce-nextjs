@@ -1,6 +1,6 @@
 import React from 'react'
-import { kiddetail } from '@/pages/components/detail'
-import Itemcard from '@/pages/components/Itemcard'
+import { kiddetail } from '@/components/detail'
+import Itemcard from '@/components/Itemcard'
 const Kids = () => {
   return (
     <div className='p-2'>

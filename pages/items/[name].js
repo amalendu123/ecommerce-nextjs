@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { kiddetail,Ladi,mens } from '@/pages/components/detail'
+import { kiddetail,Ladi,mens } from '@/components/detail'
 const Itemdetail = ({eventdata}) => {
   const [pin, setpin] = useState();
   const [avail,setAvail] = useState();
