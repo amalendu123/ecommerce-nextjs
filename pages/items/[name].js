@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { kiddetail,Ladi,mens } from '@/components/detail'
-const Itemdetail = ({eventdata}) => {
+const Itemdetail = ({eventdata,addToCart}) => {
   const [pin, setpin] = useState();
   const [avail,setAvail] = useState();
   const checkpin = async() => {
@@ -40,8 +40,8 @@ const Itemdetail = ({eventdata}) => {
             {avail==false && <div><p>This order cannot be shipped.</p></div>}
           </div>
           <div className='flex justify-start'>
-            <button className="bg-black  text-white font-bold p-4 w-40 hover:bg-slate-400 hover:text-black ">
-              Buy Now
+            <button onClick={()=>{addToCart(eventdata.name,1,499,eventdata.name)}} className="bg-black  text-white font-bold p-4 w-40 hover:bg-slate-400 hover:text-black ">
+              Add to Cart
             </button>
           </div>
         </div>

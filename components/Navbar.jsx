@@ -52,10 +52,10 @@ const Navbar = ({cart,addToCart,removeFromCart,ClearCart,subTotal}) => {
               return (
                 <li key={k}>
                   <div className='flex justify-between'>
-                  <p>{card[k].name}</p>
-                  <button>-</button>
-                  <p>{card[k].qty}</p>
-                  <button>+</button>
+                  <p>{cart[k].name}</p>
+                  <button onClick={()=>{removeFromCart(name,1,499,cart[k].name)}}>-</button>
+                  <p>{cart[k].qty}</p>
+                  <button onClick={()=>{addToCart(name,1,499,cart[k].name)}}>+</button>
                   </div>
                 </li>
               )

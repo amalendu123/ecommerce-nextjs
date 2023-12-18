@@ -149,7 +149,7 @@ export const kiddetail = [
 export const  Ladi = [
     {
         id: 1,
-        name: "kid1",
+        name: "ladies1",
         price: 100,
         category:"ladies",
         description: "helo this is dress",

@@ -32,6 +32,7 @@ export default function App({ Component, pageProps }: AppProps) {
   }, []);
 
   const saveCart = (mycart: Cart) => {
+
     localStorage.setItem('cart', JSON.stringify(mycart));
     let subt = 0;
     for (const key of Object.keys(mycart)) {
