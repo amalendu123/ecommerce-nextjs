@@ -4,64 +4,75 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import { useEffect, useState } from 'react'
 
+interface CartItem {
+  itemcode: string;
+  qty: number;
+  price: number;
+  name: string;
+}
+interface Cart {
+  [itemcode: string]: CartItem;
+}
+
 export default function App({ Component, pageProps }: AppProps) {
-  const [cart, setcart] = useState({})
-  const [total,settotal] = useState(0);
+  const [cart, setCart] = useState<Cart>({}); 
+  const [total, setTotal] = useState(0);
+
   useEffect(() => {
     try {
       const storedCart = localStorage.getItem('cart');
       if (storedCart !== null) {
-        setcart(JSON.parse(storedCart));
+        setCart(JSON.parse(storedCart));
       }
     } catch (error) {
       console.error('Error while parsing cart data from local storage:', error);
-      // Optionally, you can log the stored data for further investigation
       console.log('Stored cart data:', localStorage.getItem('cart'));
-      // Clear local storage or handle the error accordingly
       localStorage.clear();
     }
-    
-   
-  }, [])
-  
-  const Savecart = (mycart) => {
-    localStorage.setItem('cart', JSON.stringify(mycart)); // Convert to JSON string before storing
+  }, []);
+
+  const saveCart = (mycart: Cart) => {
+    localStorage.setItem('cart', JSON.stringify(mycart));
     let subt = 0;
-    for (let i = 0; i < Object.keys(cart).length; i++) {
-      subt += mycart[Object.keys(cart)[i]].price * mycart[Object.keys(cart)[i]].qty;
+    for (const key of Object.keys(mycart)) {
+      subt += mycart[key].price * mycart[key].qty;
     }
-    settotal(subt);
+    setTotal(subt);
   };
-  const addtocart = (itemcode ,qty,price,name) =>{
-    let mycart = cart;
+
+  const addToCart = (itemcode: string, qty: number, price: number, name: string) => {
+    let mycart = { ...cart }; 
     if (itemcode in mycart) {
-      mycart[itemcode].qty = mycart[itemcode].qty + qty;
-    }else{
-      mycart[itemcode]= {itemcode,qty:1,price,name}
+      mycart[itemcode].qty += qty;
+    } else {
+      mycart[itemcode] = { itemcode, qty: 1, price, name };
     }
-    setcart(mycart)
-    Savecart(mycart)
-  }
-  const removefromcart = (itemcode ,qty,price,name) =>{
-    let mycart = cart;
+    setCart(mycart);
+    saveCart(mycart);
+  };
+
+  const removeFromCart = (itemcode: string, qty: number, price: number, name: string) => {
+    let mycart = { ...cart }; 
     if (itemcode in mycart) {
-      mycart[itemcode].qty = mycart[itemcode].qty -  qty;
+      mycart[itemcode].qty -= qty;
+      if (mycart[itemcode].qty <= 0) {
+        delete mycart[itemcode];
+      }
     }
-    if(mycart[itemcode].qty <= 0){
-      delete mycart[itemcode].qty;
-    }
-    setcart(mycart)
-    Savecart(mycart)
-  }
-  const clearcart = () =>{
-    setcart({});
-    Savecart({});
-  }
+    setCart(mycart);
+    saveCart(mycart);
+  };
+
+  const clearCart = () => {
+    setCart({});
+    saveCart({});
+  };
+
   return (
     <>
-      <Navbar cart = {cart} addToCart = {addtocart} removeFromCart = {removefromcart} clearCart = {clearcart} subTotal = {total}/>
-        <Component cart = {cart} addToCart = {addtocart} removeFromCart = {removefromcart} clearCart = {clearcart} subTotal = {total}{...pageProps} />
+      <Navbar cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} ClearCart={clearCart} subTotal={total} />
+      <Component cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} ClearCart={clearCart} subTotal={total} {...pageProps} />
       <Footer />
     </>
-  )
+  );
 }
