@@ -46,12 +46,22 @@ const Navbar = ({cart,addToCart,removeFromCart,ClearCart,subTotal}) => {
       {cart1 ? <div></div> :
         <div className='fixed right-0 h-screen flex flex-col md:w-1/4 bg-white p-4 gap-10 z-50 w-full'>
           <p className='text-center font-mono font-bold '>Yours Cart </p>
-          <div className='flex justify-between'>
-            <p>Name</p>
-            <button>-</button>
-            <p>1</p>
-            <button>+</button>
-          </div>
+          {Object.keys(cart).length === 0 && <div className='text-center'>There is no item in the cart </div>}
+          {
+            Object.keys(cart).map((k)=>{ 
+              return (
+                <li key={k}>
+                  <div className='flex justify-between'>
+                  <p>{card[k].name}</p>
+                  <button>-</button>
+                  <p>{card[k].qty}</p>
+                  <button>+</button>
+                  </div>
+                </li>
+              )
+            })
+          }
+          
           <div className='flex justify-between' >
             <button class="bg-black hover:bg-white text-white hover:text-black font-bold p-4 xl:w-40 lg:w-28 md:w-20 ">
               Check-out

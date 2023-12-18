@@ -8,14 +8,19 @@ export default function App({ Component, pageProps }: AppProps) {
   const [cart, setcart] = useState({})
   const [total,settotal] = useState(0);
   useEffect(() => {
-    try{
-      if(localStorage.getItem('cart')){
-        setcart(JSON.parse(localStorage.getItem('cart')))
+    try {
+      const storedCart = localStorage.getItem('cart');
+      if (storedCart !== null) {
+        setcart(JSON.parse(storedCart));
       }
-    }catch(error){
-      console.error(error);
+    } catch (error) {
+      console.error('Error while parsing cart data from local storage:', error);
+      // Optionally, you can log the stored data for further investigation
+      console.log('Stored cart data:', localStorage.getItem('cart'));
+      // Clear local storage or handle the error accordingly
       localStorage.clear();
     }
+    
    
   }, [])
   
