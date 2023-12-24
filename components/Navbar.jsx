@@ -63,9 +63,9 @@ const Navbar = ({cart,addToCart,removeFromCart,ClearCart,subTotal}) => {
           }
           
           <div className='flex justify-between' >
-            <button class="bg-black hover:bg-white text-white hover:text-black font-bold p-4 xl:w-40 lg:w-28 md:w-20 ">
+          <Link href={'/checkout'}><button class="bg-black hover:bg-white text-white hover:text-black font-bold p-4 xl:w-40 lg:w-28 md:w-20 ">
               Check-out
-            </button>
+            </button></Link>
             <button class="bg-black hover:bg-white text-white hover:text-black font-bold p-4 xl:w-40 " onClick={ClearCart}>
               Clear
             </button>
