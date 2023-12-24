@@ -23,12 +23,14 @@ export default function App({ Component, pageProps }: AppProps) {
       const storedCart = localStorage.getItem('cart');
       if (storedCart !== null) {
         setCart(JSON.parse(storedCart));
+        saveCart(JSON.parse(storedCart))
       }
     } catch (error) {
       console.error('Error while parsing cart data from local storage:', error);
       console.log('Stored cart data:', localStorage.getItem('cart'));
       localStorage.clear();
     }
+    
   }, []);
 
   const saveCart = (mycart: Cart) => {
@@ -37,7 +39,9 @@ export default function App({ Component, pageProps }: AppProps) {
     let subt = 0;
     for (const key of Object.keys(mycart)) {
       subt += mycart[key].price * mycart[key].qty;
+      
     }
+    
     setTotal(subt);
   };
 
@@ -47,7 +51,9 @@ export default function App({ Component, pageProps }: AppProps) {
       mycart[itemcode].qty += qty;
     } else {
       mycart[itemcode] = { itemcode, qty: 1, price, name };
+      
     }
+    
     setCart(mycart);
     saveCart(mycart);
   };
@@ -71,9 +77,9 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      <Navbar cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} ClearCart={clearCart} subTotal={total} />
-      <Component cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} ClearCart={clearCart} subTotal={total} {...pageProps} />
-      <Footer />
-    </>
+    <Navbar cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} ClearCart={clearCart} subTotal={total} />
+    <Component cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} ClearCart={clearCart} subTotal={total} {...pageProps} />
+    <Footer />
+  </>
   );
 }
