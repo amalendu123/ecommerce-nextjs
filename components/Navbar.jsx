@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import CloseIcon from '@mui/icons-material/Close';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Close } from '@mui/icons-material';
 const Navbar = ({cart,addToCart,removeFromCart,ClearCart,subTotal}) => {
   const router = useRouter();
@@ -34,6 +35,7 @@ const Navbar = ({cart,addToCart,removeFromCart,ClearCart,subTotal}) => {
           </div>
         </div>
         <div className='flex gap-10'>
+          <Link href={"/Login"}><AccountCircleIcon / ></Link>
           <div onClick={handleClick}>
             <ShoppingCartIcon />
           </div>
